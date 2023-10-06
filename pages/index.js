@@ -65,9 +65,9 @@ export default function MainPage() {
           And here's a button that does nothing:
         </Typography>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <button style={{ padding: "10px 20px", fontSize: "16px" }}>
-            Click me!
-          </button>
+          <Button style={{ padding: "10px 20px", fontSize: "16px" }}>
+            Click me! (i will have a purpose eventually.. i guess..)
+          </Button>
         </Box>
       </div>
       <AppBar
