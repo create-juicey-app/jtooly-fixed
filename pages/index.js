@@ -38,19 +38,37 @@ export default function MainPage() {
     <>
       <div className={classes.root}>
         <Typography variant="h2">Welcome to Jtooly!</Typography>
-        <Typography variant="h1" gutterBottom>
-          Version 1.0 (CAN YOU BELIEVE IT GUYS!)
+        <Typography variant="h5" gutterBottom>
+          Version 1.3 
         </Typography>
         <Divider variant="middle"></Divider>
         <Typography variant="subtitle1" gutterBottom>
           This is a test website with no real purpose. Feel free to explore and
           experiment with the features.
         </Typography>
-
-        <Typography variant="subtitle2" gutterBottom>
-          Today's tip : Im trying my best to make this website the most secure
-          possible - Juicey
+        <Typography variant="subtitle1" gutterBottom>
+          This website is made with Next.js, Material UI, and Vercel!
         </Typography>
+        <Typography variant="subtitle1" gutterBottom>
+          If you have any questions or concerns, please contact me on Discord.
+        </Typography>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <img
+            src="https://picsum.photos/800/400"
+            alt="random placeholder image"
+          />
+        </Box>
+        <Typography variant="subtitle1" gutterBottom>
+          Here's a random placeholder image for your enjoyment!
+        </Typography>
+        <Typography variant="subtitle1" gutterBottom>
+          And here's a button that does nothing:
+        </Typography>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <button style={{ padding: "10px 20px", fontSize: "16px" }}>
+            Click me!
+          </button>
+        </Box>
       </div>
       <AppBar
         position="fixed"
