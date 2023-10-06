@@ -1,0 +1,44 @@
+{
+  "name": "jtooly",
+  "version": "0.9.1",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": " next build",
+    "start": "next start",
+    "lint": "next lint -p 3001"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.14",
+    "@mui/x-date-pickers": "^6.6.0",
+    "@next-auth/mongodb-adapter": "^1.1.2",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.8",
+    "express": "^4.18.2",
+    "ffmpeg-static": "^5.1.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "formidable": "^3.2.5",
+    "js-cookie": "^3.0.5",
+    "mongodb": "^5.6.0",
+    "next": "^13.2.4",
+    "next-auth": "^4.22.1",
+    "nextjs-google-analytics": "^2.3.3",
+    "prop-types": "^15.8.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "socket.io": "^4.7.0",
+    "socket.io-client": "^4.7.0",
+    "spotify-web-api-js": "^1.5.2",
+    "spotify-web-api-node": "^5.0.2",
+    "ytdl-core": "^4.11.4"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "^13.4.5",
+    "grunt": "^1.6.1",
+    "prettier": "2.8.8"
+  }
+}
