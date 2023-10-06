@@ -40,7 +40,7 @@ export default function MainPage() {
       <div className={classes.root}>
         <Typography variant="h2">Welcome to Jtooly!</Typography>
         <Typography variant="h5" gutterBottom>
-          Version 1.3 
+          Version 1.3.1
         </Typography>
         <Divider variant="middle"></Divider>
         <Typography variant="subtitle1" gutterBottom>
