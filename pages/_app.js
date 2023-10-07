@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
-
+import { Analytics } from '@vercel/analytics/react';
 import { createTheme, useTheme, ThemeProvider } from "@mui/material/styles";
 import Router from "next/router";
 import MainBar from "@/components/FrontModules/appbar";
@@ -350,6 +350,7 @@ function MyApp({ Component, pageProps, mode = PaletteMode, ipAddress }) {
             </ErrorBoundary>
             <ErrorBoundary>
               <GoogleAnalytics trackPageViews gaMeasurementId="G-H0STNNX13D" />
+               <Analytics />
               <Component {...pageProps} />
             </ErrorBoundary>
             <ErrorBoundary>
