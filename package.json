@@ -10,6 +10,7 @@
     "lint": "next lint -p 3001"
   },
   "dependencies": {
+    "@vercel/analytics":" ^1.1.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.11",
