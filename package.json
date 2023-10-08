@@ -10,13 +10,13 @@
     "lint": "next lint -p 3001"
   },
   "dependencies": {
-    "@vercel/analytics":" ^1.1.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.14",
     "@mui/x-date-pickers": "^6.6.0",
     "@next-auth/mongodb-adapter": "^1.1.2",
+    "@vercel/analytics": "^1.1.0",
     "cors": "^2.8.5",
     "dayjs": "^1.11.8",
     "express": "^4.18.2",

@@ -33,7 +33,7 @@ import { GoogleAnalytics } from "nextjs-google-analytics";
 import { CheckRounded } from "@mui/icons-material";
 import Cookies from "js-cookie";
 import Head from "next/head";
-
+import { Analytics } from '@vercel/analytics/react';
 const MyThemeProvider = ({ children }) => {
   const prefersDarkMode = true;
   const [loading, setLoading] = useState(true);
@@ -155,6 +155,7 @@ function MyApp({ Component, pageProps, mode = PaletteMode, ipAddress }) {
     setShowCookieDisclaimer(false);
     Cookies.set("cookieDisclaimerAccepted", true, { expires: 365 });
   };
+  
 
   useEffect(() => {
     const cookieDisclaimerAccepted = Cookies.get("cookieDisclaimerAccepted");
