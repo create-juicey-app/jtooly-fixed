@@ -55,7 +55,7 @@ export default function MainPage() {
         </Typography>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <img
-            src="https://picsum.photos/800/400"
+            src="https://picsum.photos/450/450"
             alt="random placeholder image"
           />
         </Box>
