@@ -9,7 +9,6 @@ import {
   Typography,
 } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Analytics } from '@vercel/analytics/react';
 import { createTheme, useTheme, ThemeProvider } from "@mui/material/styles";
 import Router from "next/router";
 import MainBar from "@/components/FrontModules/appbar";
@@ -34,6 +33,7 @@ import { GoogleAnalytics } from "nextjs-google-analytics";
 import { CheckRounded } from "@mui/icons-material";
 import Cookies from "js-cookie";
 import Head from "next/head";
+
 const MyThemeProvider = ({ children }) => {
   const prefersDarkMode = true;
   const [loading, setLoading] = useState(true);
@@ -98,66 +98,9 @@ const MyThemeProvider = ({ children }) => {
   if (loading || !theme) {
     // Show loading screen while fetching the color
     return (
-      <>
-        {!theme || showBackdrop ? (
-          <Backdrop open={true} style={{ zIndex: 9999 }}>
-            <CircularProgress color="inherit" />
-          </Backdrop>
-        ) : (
-          <Backdrop open={true} style={{ zIndex: 9999 }}>
-            <Stack alignItems="center" justifyContent="center" spacing={4}>
-              <Avatar
-                sx={{ width: 69, height: 92, imageRendering: "pixelated" }}
-                variant="rounded"
-                src="Error.png"
-              ></Avatar>
-              <Typography gutterBottom variant="h6" sx={{ maxWidth: "88vw" }}>
-                Something went wrong with the color system, please wait or reset
-                the color, if this error is still present please refresh the
-                page or contact an administrator.
-              </Typography>
-              <Typography
-                gutterBottom
-                variant="caption"
-                sx={{ alignContent: "center", maxWidth: "88vw" }}
-              >
-                Debugging info:
-                <br />
-                <br />
-                L0001: {loading ? loading.toString() : "Nothing"} <br />
-                T0001:{" "}
-                <code
-                  style={{
-                    maxWidth: "70%",
-                    display: "inline-block",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {theme ? JSON.stringify(theme) : "ERROR"}
-                </code>{" "}
-                <br />
-                L0002:
-                {theme && theme.palette.mode
-                  ? theme.palette.mode.toString()
-                  : "ERROR"}{" "}
-                <br />
-                T0002:{" "}
-                {theme && theme.palette.primary.main
-                  ? theme.palette.primary.main.toString()
-                  : "ERROR"}{" "}
-                <br />
-                T0003:
-                {theme && theme.palette.primary.back
-                  ? theme.palette.primary.back.toString()
-                  : "ERROR"}
-                <br />
-              </Typography>
-            </Stack>
-          </Backdrop>
-        )}
-      </>
+      <Backdrop open={true} style={{ zIndex: 9999 }}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     );
   }
 
@@ -285,9 +228,7 @@ function MyApp({ Component, pageProps, mode = PaletteMode, ipAddress }) {
       </Head>
       <MyThemeProvider>
         <SessionProvider>
-          <ErrorBoundary>
-            <MainBar style={toolbarStyle} />
-          </ErrorBoundary>
+          <MainBar style={toolbarStyle} />
           <Paper
             variant="outlined"
             color="primary"
@@ -301,69 +242,63 @@ function MyApp({ Component, pageProps, mode = PaletteMode, ipAddress }) {
                 You are offline. Please check your internet connection.
               </Alert>
             </Snackbar>
-            <ErrorBoundary>
-              <Snackbar
-                open={showCookieDisclaimer}
-                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                autoHideDuration={60000000}
+            <Snackbar
+              open={showCookieDisclaimer}
+              anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+              autoHideDuration={60000000}
+              sx={{ borderRadius: "16px" }}
+            >
+              <Alert
                 sx={{ borderRadius: "16px" }}
+                severity="info"
+                action={
+                  <>
+                    <IconButton
+                      size="small"
+                      aria-label="close"
+                      color="inherit"
+                      href="https://google.com"
+                    >
+                      <CloseIcon fontSize="small" />
+                    </IconButton>
+                    <IconButton
+                      size="small"
+                      aria-label="close"
+                      color="inherit"
+                      onClick={handleCookieDisclaimerClose}
+                    >
+                      <CheckRounded fontSize="small" />
+                    </IconButton>
+                  </>
+                }
               >
-                <Alert
-                  sx={{ borderRadius: "16px" }}
-                  severity="info"
-                  action={
-                    <>
-                      <IconButton
-                        size="small"
-                        aria-label="close"
-                        color="inherit"
-                        href="https://google.com"
-                      >
-                        <CloseIcon fontSize="small" />
-                      </IconButton>
-                      <IconButton
-                        size="small"
-                        aria-label="close"
-                        color="inherit"
-                        onClick={handleCookieDisclaimerClose}
-                      >
-                        <CheckRounded fontSize="small" />
-                      </IconButton>
-                    </>
-                  }
-                >
-                  This website uses cookies to enhance the user experience
-                  (Authentification Purposes only). By using this website, you
-                  consent to the use of cookies
-                  <br></br>
-                  Would you like to continue?
+                This website uses cookies to enhance the user experience
+                (Authentification Purposes only). By using this website, you
+                consent to the use of cookies
+                <br></br>
+                Would you like to continue?
+              </Alert>
+            </Snackbar>
+            {isLowEnd ? (
+              <Snackbar open={true}>
+                <Alert severity="warning">
+                  Your device is old, some part of the website may or may not
+                  work.
                 </Alert>
               </Snackbar>
-              {isLowEnd ? (
-                <Snackbar open={true}>
-                  <Alert severity="warning">
-                    Your device is old, some part of the website may or may not
-                    work.
-                  </Alert>
-                </Snackbar>
-              ) : null}
-            </ErrorBoundary>
-            <ErrorBoundary>
-              <GoogleAnalytics trackPageViews gaMeasurementId="G-H0STNNX13D" />
-               <Analytics />
-              <Component {...pageProps} />
-            </ErrorBoundary>
-            <ErrorBoundary>
-              <ScrollTop {...pageProps}>
-                <Fab
-                  onClick={goToTop}
-                  size="small"
-                  aria-label="scroll back to top"
-                >
-                  <KeyboardArrowUpIcon />
-                </Fab>
-              </ScrollTop>
-            </ErrorBoundary>
+            ) : null}
+            <GoogleAnalytics trackPageViews gaMeasurementId="G-H0STNNX13D" />
+            <Analytics />
+            <Component {...pageProps} />
+            <ScrollTop {...pageProps}>
+              <Fab
+                onClick={goToTop}
+                size="small"
+                aria-label="scroll back to top"
+              >
+                <KeyboardArrowUpIcon />
+              </Fab>
+            </ScrollTop>
           </Paper>
           <Backdrop open={isLoading} style={{ zIndex: 9999 }}>
             <CircularProgress color="inherit" />
