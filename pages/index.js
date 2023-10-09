@@ -88,15 +88,6 @@ export default function MainPage() {
       >
         <Toolbar>
           <div className={classes.icons}>
-            <Tooltip arrow describeChild title="Primary Youtube Channel">
-              <IconButton
-                size="small"
-                color="primary"
-                href="https://www.youtube.com/channel/UCjfsoMEScp4Mw5zLepNxuQw"
-              >
-                <YouTubeIcon fontSize="large" />
-              </IconButton>
-            </Tooltip>
             <Tooltip arrow describeChild title="Secondary Youtube Channel">
               <IconButton
                 size="small"
