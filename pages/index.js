@@ -81,11 +81,11 @@ export default function MainPage() {
           <div className={classes.icons}>
             <Tooltip arrow describeChild title="Secondary Youtube Channel">
               <IconButton
-                size="small"
-                color="secondary"
+                size="large"
+                color="primary"
                 href="https://www.youtube.com/channel/UClUzSxoR2OrisM5y5UVNeHA"
               >
-                <YouTubeIcon fontSize="medium" />
+                <YouTubeIcon fontSize="large" />
               </IconButton>
             </Tooltip>
             <Tooltip arrow describeChild title="Chat with me on Discord">
