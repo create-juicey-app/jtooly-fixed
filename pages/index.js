@@ -53,9 +53,8 @@ export default function MainPage() {
         <Typography variant="subtitle1" gutterBottom>
           If you have any questions or concerns, please contact me on Discord.
         </Typography>
-
         <Typography variant="subtitle1" gutterBottom>
-          Here's a button that does nothing:
+          And here's a button that does nothing:
         </Typography>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Button style={{ padding: "10px 20px", fontSize: "16px" }}>
@@ -80,15 +79,6 @@ export default function MainPage() {
       >
         <Toolbar>
           <div className={classes.icons}>
-            <Tooltip arrow describeChild title="Primary Youtube Channel">
-              <IconButton
-                size="small"
-                color="primary"
-                href="https://www.youtube.com/channel/UCjfsoMEScp4Mw5zLepNxuQw"
-              >
-                <YouTubeIcon fontSize="large" />
-              </IconButton>
-            </Tooltip>
             <Tooltip arrow describeChild title="Secondary Youtube Channel">
               <IconButton
                 size="small"
