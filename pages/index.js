@@ -91,7 +91,7 @@ export default function MainPage() {
             <Tooltip arrow describeChild title="Chat with me on Discord">
               <IconButton
                 color="secondary"
-                href="https://discord.com/channels/@me/629932907657691147"
+                href="https://discord.gg/NJbcXxha"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
