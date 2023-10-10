@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { lazy, memo, useState, useEffect } from "react";
+import React from "react";
+import CloseIcon from "@mui/icons-material/Close";
 import {
   Avatar,
   Backdrop,
@@ -20,20 +22,19 @@ import * as muiColors from "@mui/material/colors";
 
 import { SessionProvider } from "next-auth/react";
 import PropTypes from "prop-types";
-import Snackbar from "@mui/material/Snackbar";
-import CloseIcon from "@mui/icons-material/Close";
-import Alert from "@mui/material/Alert";
 import { IconButton } from "@mui/material";
 import { Fab } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useScrollTrigger } from "@mui/material";
 import Grow from "@mui/material/Grow";
 import ErrorBoundary from "@/components/BackModules/errorhandling";
-import { GoogleAnalytics } from "nextjs-google-analytics";
 import { CheckRounded } from "@mui/icons-material";
 import Cookies from "js-cookie";
 import Head from "next/head";
-import { Analytics } from '@vercel/analytics/react';
+
+const Snackbar = lazy(() => import("@mui/material/Snackbar"));
+const Alert = memo((props) => <Alert {...props} />);
+
 const MyThemeProvider = ({ children }) => {
   const prefersDarkMode = true;
   const [loading, setLoading] = useState(true);
@@ -146,7 +147,15 @@ ScrollTop.propTypes = {
   window: PropTypes.func,
 };
 
-function MyApp({ Component, pageProps, mode = PaletteMode, ipAddress }) {
+const Analytics = () => {
+  useEffect(() => {
+    // Your analytics code here
+  }, []);
+
+  return null;
+};
+
+const MyApp = ({ Component, pageProps, mode = PaletteMode, ipAddress }) => {
   const [isOnline, setIsOnline] = useState(true);
 
   const [showCookieDisclaimer, setShowCookieDisclaimer] = useState(true);
@@ -155,7 +164,6 @@ function MyApp({ Component, pageProps, mode = PaletteMode, ipAddress }) {
     setShowCookieDisclaimer(false);
     Cookies.set("cookieDisclaimerAccepted", true, { expires: 365 });
   };
-  
 
   useEffect(() => {
     const cookieDisclaimerAccepted = Cookies.get("cookieDisclaimerAccepted");
@@ -238,48 +246,50 @@ function MyApp({ Component, pageProps, mode = PaletteMode, ipAddress }) {
             className="content"
             sx={{ backgroundColor: currentTheme.palette.primary.back }}
           >
-            <Snackbar open={!isOnline}>
-              <Alert severity="error">
-                You are offline. Please check your internet connection.
-              </Alert>
-            </Snackbar>
-            <Snackbar
-              open={showCookieDisclaimer}
-              anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-              autoHideDuration={60000000}
-              sx={{ borderRadius: "16px" }}
-            >
-              <Alert
+            <React.Suspense fallback={<div>Loading...</div>}>
+              <Snackbar open={!isOnline}>
+                <Alert severity="error">
+                  You are offline. Please check your internet connection.
+                </Alert>
+              </Snackbar>
+              <Snackbar
+                open={showCookieDisclaimer}
+                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                autoHideDuration={60000000}
                 sx={{ borderRadius: "16px" }}
-                severity="info"
-                action={
-                  <>
-                    <IconButton
-                      size="small"
-                      aria-label="close"
-                      color="inherit"
-                      href="https://google.com"
-                    >
-                      <CloseIcon fontSize="small" />
-                    </IconButton>
-                    <IconButton
-                      size="small"
-                      aria-label="close"
-                      color="inherit"
-                      onClick={handleCookieDisclaimerClose}
-                    >
-                      <CheckRounded fontSize="small" />
-                    </IconButton>
-                  </>
-                }
               >
-                This website uses cookies to enhance the user experience
-                (Authentification Purposes only). By using this website, you
-                consent to the use of cookies
-                <br></br>
-                Would you like to continue?
-              </Alert>
-            </Snackbar>
+                <Alert
+                  sx={{ borderRadius: "16px" }}
+                  severity="info"
+                  action={
+                    <>
+                      <IconButton
+                        size="small"
+                        aria-label="close"
+                        color="inherit"
+                        href="https://google.com"
+                      >
+                        <CloseIcon fontSize="small" />
+                      </IconButton>
+                      <IconButton
+                        size="small"
+                        aria-label="close"
+                        color="inherit"
+                        onClick={handleCookieDisclaimerClose}
+                      >
+                        <CheckRounded fontSize="small" />
+                      </IconButton>
+                    </>
+                  }
+                >
+                  This website uses cookies to enhance the user experience
+                  (Authentification Purposes only). By using this website, you
+                  consent to the use of cookies
+                  <br></br>
+                  Would you like to continue?
+                </Alert>
+              </Snackbar>
+            </React.Suspense>
             {isLowEnd ? (
               <Snackbar open={true}>
                 <Alert severity="warning">
@@ -288,8 +298,6 @@ function MyApp({ Component, pageProps, mode = PaletteMode, ipAddress }) {
                 </Alert>
               </Snackbar>
             ) : null}
-            <GoogleAnalytics trackPageViews gaMeasurementId="G-H0STNNX13D" />
-            <Analytics />
             <Component {...pageProps} />
             <ScrollTop {...pageProps}>
               <Fab
@@ -300,6 +308,7 @@ function MyApp({ Component, pageProps, mode = PaletteMode, ipAddress }) {
                 <KeyboardArrowUpIcon />
               </Fab>
             </ScrollTop>
+            <Analytics />
           </Paper>
           <Backdrop open={isLoading} style={{ zIndex: 9999 }}>
             <CircularProgress color="inherit" />
@@ -308,7 +317,7 @@ function MyApp({ Component, pageProps, mode = PaletteMode, ipAddress }) {
       </MyThemeProvider>
     </ErrorBoundary>
   );
-}
+};
 
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,

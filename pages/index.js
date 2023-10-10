@@ -53,17 +53,9 @@ export default function MainPage() {
         <Typography variant="subtitle1" gutterBottom>
           If you have any questions or concerns, please contact me on Discord.
         </Typography>
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <img
-            src="https://picsum.photos/450/450"
-            alt="random placeholder image"
-          />
-        </Box>
+
         <Typography variant="subtitle1" gutterBottom>
-          Here's a random placeholder image for your enjoyment!
-        </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          And here's a button that does nothing:
+          Here's a button that does nothing:
         </Typography>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Button style={{ padding: "10px 20px", fontSize: "16px" }}>
