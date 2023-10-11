@@ -345,7 +345,7 @@ export default function Users({ users, isadmin }) {
                       />
                     </CardContent>
                   )}
-{OwnisAdmin ? (
+{OwnisAdmin || user.isOwn ? (
                   <CardActions>
                     
                     <Grid
