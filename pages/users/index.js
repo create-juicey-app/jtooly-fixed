@@ -147,7 +147,11 @@ export default function Users({ users, isadmin }) {
       const res = await fetch("/api/users/checkselfadmin");
       const data = await res.json();
       setAuthenticated(data.isAdmin);
+      console.log(await handleCheckAdmin(data.userId))
       setLoading(false);
+
+      
+
     };
 
     fetchAdminStatus();
@@ -229,6 +233,7 @@ export default function Users({ users, isadmin }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [image, setImage] = useState("");
+  const [OwnisAdmin, setOwnisAdmin] = useState(false);
   const [reloading, setReloading] = useState(true);
 
   useEffect(() => {
@@ -340,14 +345,16 @@ export default function Users({ users, isadmin }) {
                       />
                     </CardContent>
                   )}
-
+{OwnisAdmin ? (
                   <CardActions>
+                    
                     <Grid
                       container
                       direction="row"
                       justifyContent="space-between"
                       alignItems="center"
                     >
+                      
                       {user.isAdmin ? (
                         <Tooltip
                           followCursor
@@ -405,7 +412,10 @@ export default function Users({ users, isadmin }) {
                         </Tooltip>
                       )}
                     </Grid>
+                    
                   </CardActions>
+                  ) : null}
+                  
                 </Paper>
                 {/* Add circular progress and blur when isDeleting is true */}
                 {isDeleting && (
