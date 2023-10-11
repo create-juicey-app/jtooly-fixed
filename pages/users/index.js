@@ -339,10 +339,7 @@ export default function Users({ users, isadmin }) {
                     </CardContent>
                   ) : (
                     <CardContent>
-                      <Typography>Loading user informations</Typography>
-                      <CircularProgress
-                        sx={{ marginLeft: "55px", marginRight: "55px" }}
-                      />
+                      <Skeleton/>
                     </CardContent>
                   )}
 {authenticated || user.isOwn ? (
