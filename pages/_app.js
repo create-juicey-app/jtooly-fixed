@@ -16,7 +16,7 @@ import "../styles/globals.css";
 
 import { darken, lighten } from "@mui/material";
 import * as muiColors from "@mui/material/colors";
-
+import { PaletteMode } from "@mui/material";
 import { SessionProvider } from "next-auth/react";
 import PropTypes from "prop-types";
 import { IconButton } from "@mui/material";
@@ -29,6 +29,7 @@ import { CheckRounded } from "@mui/icons-material";
 import Cookies from "js-cookie";
 import Head from "next/head";
 import Snackbar from "@mui/material/Snackbar";
+
 // const Snackbar = lazy(() => import("@mui/material/Snackbar"));
 // const Alert = memo((props) => <Alert {...props} />);
 
@@ -287,7 +288,7 @@ const MyApp = ({ Component, pageProps, mode = PaletteMode, ipAddress }) => {
                 <KeyboardArrowUpIcon />
               </Fab>
             </ScrollTop>
-            <Analytics />
+
           </Paper>
           <Backdrop open={isLoading} style={{ zIndex: 9999 }}>
             <CircularProgress color="inherit" />

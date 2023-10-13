@@ -44,9 +44,43 @@ function CardList() {
                 );
             }
 
+            function CardList2() {
+                const [cards, setCards] = useState(jsonData2);
 
+                return (
+                    <div>
+                        {cards.map((card) => (
+                            <Card key={card.id} sx={{ maxWidth: 345 }}>
+                                <CardMedia
+                                    component="img"
+                                    height="140"
+                                    image={card.imageUrl}
+                                    alt={card.title}
+                                />
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                        {card.title}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        {card.description}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                );
+            }
 
-const jsonData = [
+const jsonData2 = [
+                {
+                    id: 1,
+                    title: 'laitalafraisus',
+                    description: 'This is the furry that put us on reddit, WE MUST KILL IT FIRST !!!',
+                    imageUrl: 'https://cdn.discordapp.com/avatars/1090522601534795796/c3eb20c0185647737ae0cb780a90c46a.webp?size=1024&width=0&height=230',
+                },
+            ];
+            
+            const jsonData = [
                 {
                     id: 1,
                     title: 'Withered bonnie',
@@ -62,13 +96,9 @@ const jsonData = [
             ];
 
 
-
 export default function SignInSide() {
   return (
-
-      <Grid container component="main" sx={{ height: '100vh' }}>
-
-        <Grid
+<div><Grid
           item
           xs={false}
           sm={4}
@@ -109,7 +139,54 @@ export default function SignInSide() {
 
 
           </Box>
+          
         </Grid>
-      </Grid>
+
+
+<Grid
+          item
+          xs={false}
+          sm={4}
+          md={7}
+          sx={{
+            backgroundImage: `url()`,
+          }}
+        />
+
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          <Box
+            sx={{
+              my: 8,
+              mx: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Typography component="h1" variant="h5">
+              TARGETS
+            </Typography>
+            
+            <Typography variant="body1">
+              OUR MAIN TASK IS TO REMOVE THESE FURRIES FROM THE FACE OF THE EARTH
+            </Typography>
+            
+            <Typography variant="body1">
+            WE ARE THE ANTI FURRIES UNITED
+            </Typography>
+            
+            <Typography component="h1" variant="h5">
+             WE MUST FIGHT !!!!
+            </Typography>
+<CardList2></CardList2>
+
+
+
+
+          </Box>
+          
+        </Grid>
+
+      </div>
   );
 }
