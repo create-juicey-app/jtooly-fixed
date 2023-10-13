@@ -1,20 +1,17 @@
-import { lazy, memo, useState, useEffect } from "react";
+import {useState, useEffect } from "react";
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import {
-  Avatar,
   Backdrop,
+  Alert,
   Box,
   CircularProgress,
   Paper,
-  Stack,
-  Typography,
 } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, useTheme, ThemeProvider } from "@mui/material/styles";
 import Router from "next/router";
 import MainBar from "@/components/FrontModules/appbar";
-import { PaletteMode } from "@mui/material";
 import "../styles/globals.css";
 
 import { darken, lighten } from "@mui/material";
@@ -31,9 +28,9 @@ import ErrorBoundary from "@/components/BackModules/errorhandling";
 import { CheckRounded } from "@mui/icons-material";
 import Cookies from "js-cookie";
 import Head from "next/head";
-
-const Snackbar = lazy(() => import("@mui/material/Snackbar"));
-const Alert = memo((props) => <Alert {...props} />);
+import Snackbar from "@mui/material/Snackbar";
+// const Snackbar = lazy(() => import("@mui/material/Snackbar"));
+// const Alert = memo((props) => <Alert {...props} />);
 
 const MyThemeProvider = ({ children }) => {
   const prefersDarkMode = true;
@@ -147,14 +144,6 @@ ScrollTop.propTypes = {
   window: PropTypes.func,
 };
 
-const Analytics = () => {
-  useEffect(() => {
-    // Your analytics code here
-  }, []);
-
-  return null;
-};
-
 const MyApp = ({ Component, pageProps, mode = PaletteMode, ipAddress }) => {
   const [isOnline, setIsOnline] = useState(true);
 
@@ -173,7 +162,6 @@ const MyApp = ({ Component, pageProps, mode = PaletteMode, ipAddress }) => {
   }, []);
   const [isLoading, setIsLoading] = useState(false);
   const [showAnimation, setShowAnimation] = useState(false);
-  const [isLowEnd, setIsLowEnd] = useState(false);
   const currentTheme = useTheme();
   const toolbarStyle = {
     transition: "all 0.5s",
@@ -246,7 +234,7 @@ const MyApp = ({ Component, pageProps, mode = PaletteMode, ipAddress }) => {
             className="content"
             sx={{ backgroundColor: currentTheme.palette.primary.back }}
           >
-            <React.Suspense fallback={<div>Loading...</div>}>
+
               <Snackbar open={!isOnline}>
                 <Alert severity="error">
                   You are offline. Please check your internet connection.
@@ -289,15 +277,6 @@ const MyApp = ({ Component, pageProps, mode = PaletteMode, ipAddress }) => {
                   Would you like to continue?
                 </Alert>
               </Snackbar>
-            </React.Suspense>
-            {isLowEnd ? (
-              <Snackbar open={true}>
-                <Alert severity="warning">
-                  Your device is old, some part of the website may or may not
-                  work.
-                </Alert>
-              </Snackbar>
-            ) : null}
             <Component {...pageProps} />
             <ScrollTop {...pageProps}>
               <Fab
@@ -313,6 +292,7 @@ const MyApp = ({ Component, pageProps, mode = PaletteMode, ipAddress }) => {
           <Backdrop open={isLoading} style={{ zIndex: 9999 }}>
             <CircularProgress color="inherit" />
           </Backdrop>
+          
         </SessionProvider>
       </MyThemeProvider>
     </ErrorBoundary>
