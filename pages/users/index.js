@@ -339,7 +339,10 @@ export default function Users({ users, isadmin }) {
                     </CardContent>
                   ) : (
                     <CardContent>
+                      <Skeleton animation="wave" />
                       <Skeleton/>
+
+                      <Skeleton height={30}/>
                     </CardContent>
                   )}
 {authenticated || user.isOwn ? (
@@ -397,6 +400,7 @@ export default function Users({ users, isadmin }) {
                           </span>
                         </Tooltip>
                       ) : (
+                        authenticated || user.isOwn && (
                         <Tooltip arrow title="Delete User">
                           <IconButton
                             color="primary"
@@ -407,7 +411,7 @@ export default function Users({ users, isadmin }) {
                             <DeleteForeverRoundedIcon />
                           </IconButton>
                         </Tooltip>
-                      )}
+                      ))}
                     </Grid>
                     
                   </CardActions>
